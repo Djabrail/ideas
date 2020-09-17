@@ -1,13 +1,20 @@
 <template>
   <div class="add-form">
     <div class="add-form__title">
-      <input placeholder="Заголовок темы" type="text" name="title" id="title" autocomplete="off" />
+      <input
+        v-model="title"
+        placeholder="Заголовок темы"
+        type="text"
+        name="title"
+        id="title"
+        autocomplete="off"
+      />
     </div>
     <div class="add-form__text">
-      <textarea placeholder="Опишите подробнее" name="text" id="text" rows="3"></textarea>
+      <textarea v-model="text" placeholder="Опишите подробнее" name="text" id="text" rows="3"></textarea>
     </div>
     <div class="add-form__footer">
-      <div class="add-form__footer-clear">
+      <div v-if="title && text" @click="clear" class="add-form__footer-clear">
         <svg
           height="14"
           viewBox="0 0 365.696 365.696"
@@ -20,7 +27,27 @@
           />
         </svg>
       </div>
-      <button class="add-form__footer-button">Отправить</button>
+      <button :disabled="!text || !title" class="add-form__footer-button">Отправить</button>
     </div>
   </div>
 </template>
+
+
+<script lang="ts">
+import Vue from "vue";
+export default Vue.extend({
+  data() {
+    return {
+      title: "",
+      text: ""
+    };
+  },
+  methods: {
+    clear() {
+      this.title = "";
+      this.text = "";
+      console.log(this.$refs);
+    }
+  }
+});
+</script>

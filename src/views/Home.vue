@@ -95,6 +95,11 @@ export default {
       &:active {
         background-color: darken(#2c74ff, 3%);
       }
+
+      &:disabled {
+        background-color: #d1d7e2;
+        cursor: not-allowed;
+      }
     }
 
     svg {
